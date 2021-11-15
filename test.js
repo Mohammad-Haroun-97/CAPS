@@ -1,7 +1,8 @@
 "use strict";
 
-const supertest = require("supertest");
-const events = require("./events");
+
+const caps = require("socket.io")(3000);
+
 
 let payload = {
   store: "Haroun Fried Chicken",
@@ -13,27 +14,28 @@ let payload = {
 jest.useFakeTimers();
 
 describe("caps test", () => {
-  require("./caps");
+  // const caps=require("./caps/caps");
+  
   it("pickup-detect", () => {
-    expect(events.emit("packageIsReady", payload)).toEqual(true);
+    expect(caps.emit("pickup", payload)).toEqual(true);
   });
 
   it("in-transit-detect", () => {
-    expect(events.emit("inTransiet", payload)).toEqual(true);
+    expect(caps.emit("in-transit", payload)).toEqual(true);
   });
 
   it("delivered-detect", () => {
-    expect(events.emit("pacakgeDielevered", payload)).toEqual(true);
+    expect(caps.emit("delivered", payload)).toEqual(true);
   });
 });
 
 describe("vendor test", () => {
   require("./vendors/vendors");
   it("ready to pickup", () => {
-    expect(events.emit("packageIsReady", payload)).toEqual(true);
+    expect(caps.emit("pickup", payload)).toEqual(true);
   });
   it("delivered", () => {
-    expect(events.emit("pacakgeDielevered", payload)).toEqual(true);
+    expect(caps.emit("in-transit", payload)).toEqual(true);
   });
 });
 
@@ -41,14 +43,14 @@ describe("driver test", () => {
   require("./drivers/driver");
   it("driver-pickup", () => {
       
-    expect(events.emit("packageIsReady", payload)).toEqual(true);
+    expect(caps.emit("pickup", payload)).toEqual(true);
   });
 
   it("in-transit", () => {
-    expect(events.emit("inTransiet", payload)).toEqual(true);
+    expect(caps.emit("in-transit", payload)).toEqual(true);
   });
 
   it("delivered", () => {
-    expect(events.emit("pacakgeDielevered", payload)).toEqual(true);
+    expect(caps.emit("delivered", payload)).toEqual(true);
   });
 });
