@@ -2,8 +2,8 @@
 
 # Mohammad Haroun 
 
-* pull request link : https://github.com/Mohammad-Haroun-97/CAPS/pull/2
-* repo link : https://github.com/Mohammad-Haroun-97/CAPS 
+* pull request link : https://github.com/Mohammad-Haroun-97/CAPS/pull/4
+* repo link : https://github.com/Mohammad-Haroun-97/CAPS
 * Actions link : https://github.com/Mohammad-Haroun-97/CAPS/actions 
 
 
