@@ -10,7 +10,7 @@ const vendorsConnectionToSystem=socket.connect(host);
 
 setInterval(()=>{
   let order={
-    store: 'Haroun Fried Chicken',
+    store: 'acme-widgets',
   orderId: faker.datatype.number(),
    customer: faker.name.findName(),
     address: faker.address.cityName()
@@ -26,7 +26,7 @@ vendorsConnectionToSystem.on('pickup',(order)=>{
 
 
 
-vendorsConnectionToSystem.on('vendors-in-transit',(order)=>{
+vendorsConnectionToSystem.on('in-transit',(order)=>{
 
 
   console.log(`this order Id : ${order.orderId} is in transit` );
@@ -43,7 +43,54 @@ vendorsConnectionToSystem.on('vendors-delivered',(order)=>{
 
 
 
+vendorsConnectionToSystem.on('added-vendors' , order=>{
 
+  console.log(`the mesage read by system successfuly`);
+})
+
+////////////////////////////////////
+/////////shop2 ///////////
+////////////////////////
+
+setInterval(()=>{
+  let order={
+    store: '1-800-flowers',
+  orderId: faker.datatype.number(),
+   customer: faker.name.findName(),
+    address: faker.address.cityName()
+  }
+  vendorsConnectionToSystem.emit('pickup2',order)
+
+},5000)
+
+vendorsConnectionToSystem.on('pickup2',(order)=>{
+  console.log(order.orderId);
+})
+
+
+
+
+vendorsConnectionToSystem.on('in-transit2',(order)=>{
+
+
+  console.log(`this order Id : ${order.orderId} is in transit` );
+})
+
+
+
+
+vendorsConnectionToSystem.on('vendors-delivered2',(order)=>{
+
+
+  console.log(`Thank you for delivering this item ${order.orderId} ` );
+})
+
+
+
+vendorsConnectionToSystem.on('added-vendors2' , order=>{
+
+  console.log(`the mesage read by system successfuly`);
+})
 
 
 
